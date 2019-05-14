@@ -1,0 +1,22 @@
+<form action="/dashboard/insert?tableName=<%= tableName%>" method="post">
+	<!-- <input type="text" hidden="" name="tableName" value="<%= tableName%>"> -->
+	<% tableDesc.forEach(function(desc){ %>
+	    <!-- <%= desc.Field %> :  -->
+	    <%if (desc.Type  ==  'datetime') { %>
+			<input placeholder="<%= desc.Field %>" type="date" name="<%= desc.Field %>">
+		<% } else if(desc.Type[0]  ==  'i'){ %>
+		   	<input placeholder="<%= desc.Field %>" type="mobile" name="<%= desc.Field %>">
+		<% } else { %>
+		   	<input placeholder="<%= desc.Field %>" type="text" name="<%= desc.Field %>">
+		<% } %>
+		 <%if (desc.Null  ==  'NO') { %>
+			<span style="color:red;">*</span>
+		<% } %>
+
+	    (<%= desc.Type %>)<br><br>
+	<% }) %>
+	<input type="submit" name="" value="Save">
+</form>
+
+
+<%= err %>

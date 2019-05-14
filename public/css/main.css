@@ -1,0 +1,22 @@
+body{
+	overflow-x: hidden;
+}
+
+table {
+  width: 100%;
+}
+
+table, tbody, tr, td, th {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-spacing: 0;
+  border: .5px solid #eee;
+}
+td , th {
+  min-width: 10px;
+  width: 10px;
+  max-width: 100px;
+  text-overflow:ellipsis;
+  overflow: hidden; 
+}

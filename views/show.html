@@ -1,0 +1,21 @@
+
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+
+<table>
+	<thead>
+		<tr>
+		  <% tableDesc.forEach(function(desc){ %>
+		    <th><%= desc.Field %></th>
+		  <% }) %>
+		</tr>
+  	</thead>
+  	<tbody>
+  		<% tableData.forEach(function(data){ %>
+	  		<tr>
+	  			 <% tableDesc.forEach(function(desc){ %>
+				    <td><%= data[desc.Field] %></td>
+				 <% }) %>
+			</tr>
+	  	<% }) %>
+  	</tbody>
+</table>
