@@ -7,31 +7,28 @@ const connection = require('./database/connection');
 const userRouter = require('./routes/user');
 const dashboardRouter = require('./routes/dashboard');
 
-var port = 3000;
+module.exports = {
 
-// module.exports = {
-
-	// init : function (config) {
-		
+	init : function (config) {
 		connection.init(connection.createConnection({}))
+	},
+	start : function (port) {
+		const app = express()
+		app.set('views', __dirname + '/views');
+		app.engine('html', require('ejs').renderFile);
+		app.set('view engine', 'html');
+		app.use(bodyParser.json({
+		    limit: '8mb'
+		}));
+		app.use(bodyParser.urlencoded({
+		    limit: '8mb',
+		    extended: true
+		}));
+		app.use(cookieParser());
+		app.use('/', express.static(path.join(__dirname, 'public')));
 
-	// }
-
-	const app = express()
-	app.set('views', __dirname + '/views');
-	app.engine('html', require('ejs').renderFile);
-	app.set('view engine', 'html');
-	app.use(bodyParser.json({
-	    limit: '8mb'
-	}));
-	app.use(bodyParser.urlencoded({
-	    limit: '8mb',
-	    extended: true
-	}));
-	app.use(cookieParser());
-	app.use('/', express.static(path.join(__dirname, 'public')));
-
-	app.use('/user', userRouter);
-	app.use('/dashboard', dashboardRouter);
-	app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-// }
+		app.use('/user', userRouter);
+		app.use('/dashboard', dashboardRouter);
+		app.listen(port, () => console.log(`App listening on port ${port}!`))
+	}
+}

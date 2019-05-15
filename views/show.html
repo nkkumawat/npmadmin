@@ -1,21 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ./head %>
+</head>
+<body>
+	<% include ./nav %>
+	<br>
+	<div class="container-fluid">
+	    <div class="card">
+		  	<div class="card-body">
+		  		<h3 style="display: inline;"><%= tableName%> </h3>
+		  		<a class="btn btn-primary float-right" href="/dashboard/insert?table=<%= tableName%>">Insert Data</a><br><br><br>
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+						  <% tableDesc.forEach(function(desc){ %>
+						    <th scope="col"><small> <%= desc.Field %> </small></th>
+						  <% }) %>
+						  <th scope="col" ><small>Actoin</small></th>
+						</tr>
+				  	</thead>
+				  	<tbody>
+				  		<% tableData.forEach(function(data){ %>
+					  		<tr>
+					  			<% tableDesc.forEach(function(desc){ %>
+								    <td ><small><%= data[desc.Field] %></small></td>
+								<% }) %>
+								<td >
+									<form style="display: inline;"  action="/dashboard/delete?table=<%= tableName %>" method="post">
+										<% tableDesc.forEach(function(desc){ %>
+											 <%if (desc.Type  ==  'datetime') { %>
+												<!-- <input  type="date" name="<%= desc.Field %>" value="<%= data[desc.Field] %>"> -->
+											<% } else if(desc.Type[0]  ==  'i'){ %>
+											   	<input  type="mobile" hidden name="<%= desc.Field %>" value="<%= data[desc.Field] %>">
+											<% } else { %>
+											   	<input type="text" hidden name="<%= desc.Field %>" value="<%= data[desc.Field] %>">
+											<% } %>
+										<% }) %>
+										<button  type="submit" class="btn btn-primary text-center"><i class="far fa-window-close"></i></button>
+									</form>								
+									<form style="display: inline;"   action="/dashboard/display?table=<%= tableName %>" method="post">
+										<% tableDesc.forEach(function(desc){ %>
+											 <%if (desc.Type  ==  'datetime') { %>
+												<!-- <input  type="date" name="<%= desc.Field %>" value="<%= data[desc.Field] %>"> -->
+											<% } else if(desc.Type[0]  ==  'i'){ %>
+											   	<input  type="mobile" hidden name="<%= desc.Field %>" value="<%= data[desc.Field] %>">
+											<% } else { %>
+											   	<input type="text" hidden name="<%= desc.Field %>" value="<%= data[desc.Field] %>">
+											<% } %>
+										<% }) %>
+										<button type="submit"  class="btn btn-primary text-center"><i class="far fa-caret-square-up"></i></button>
+									</form>
+								</td>
+							</tr>
+					  	<% }) %>
+				  	</tbody>
+				</table>
+				<% for(var i=range, j = range, k = 1; ; ++i , --j, k ++) { %>
+					<% if(k == 2){ %><br>
+						<nav >
+						  <ul class="pagination float-right">
+						    <li class="page-item">
+						      <a class="page-link" href="/dashboard/show?table=<%= tableName%>&range=<%= j %>">Previous</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="/dashboard/show?table=<%= tableName%>&range=<%= i %>">Next</a>
+						    </li>
+						  </ul>
+						</nav>
+					    <% break %>
+					<% } %>
+				<% } %>
+				<%if (err) { %>
+					<div class="alert alert-danger" role="alert">
+				 		<%= err %>
+					</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
 
-<link rel="stylesheet" type="text/css" href="../css/main.css">
 
-<table>
-	<thead>
-		<tr>
-		  <% tableDesc.forEach(function(desc){ %>
-		    <th><%= desc.Field %></th>
-		  <% }) %>
-		</tr>
-  	</thead>
-  	<tbody>
-  		<% tableData.forEach(function(data){ %>
-	  		<tr>
-	  			 <% tableDesc.forEach(function(desc){ %>
-				    <td><%= data[desc.Field] %></td>
-				 <% }) %>
-			</tr>
-	  	<% }) %>
-  	</tbody>
-</table>
+
+
+

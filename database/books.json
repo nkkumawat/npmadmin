@@ -1,1 +1,0 @@
-[{"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"bookname","Type":"varchar(100)","Null":"YES","Key":"UNI","Default":null,"Extra":""},{"Field":"person_id","Type":"int(11)","Null":"NO","Key":"MUL","Default":null,"Extra":""},{"Field":"description","Type":"varchar(100)","Null":"NO","Key":"","Default":null,"Extra":""}]

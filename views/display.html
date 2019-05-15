@@ -9,12 +9,11 @@
 <div class="container">
 	<br>
  	<div class="row">
-	    <div class="col-sm">
-	      
-	    </div>
+	    <div class="col-sm"></div>
 	    <div class="col-sm-6">
 	      	<div class="card">
 			  	<div class="card-body">
+			  		<h3> <%= tableName%></h3>
 					<form action="/dashboard/insert?table=<%= tableName%>" method="post">
 						<% tableDesc.forEach(function(desc){ %>
 							<div class="form-group">
@@ -22,12 +21,12 @@
 									<span style="color:red;">*</span>
 								<% } %></label>				    
 							    <%if (desc.Type  ==  'datetime') { %>
-									<input class="form-control" id="<%= desc.Field %>" placeholder="<%= desc.Field %>" type="date" name="<%= desc.Field %>">
+									<input class="form-control" id="<%= desc.Field %>" placeholder="<%= desc.Field %>" type="date" name="<%= desc.Field %>" value="<%= tableData[0][desc.Field] %>">
 								<% } else if(desc.Type[0]  ==  'i'){ %>
-								   	<input class="form-control" placeholder="<%= desc.Field %>" type="mobile" name="<%= desc.Field %>">
+								   	<input class="form-control" placeholder="<%= desc.Field %>" type="mobile" name="<%= desc.Field %>" value="<%= tableData[0][desc.Field] %>">
 								<% } else { %>
-								   	<input class="form-control" placeholder="<%= desc.Field %>" type="text" name="<%= desc.Field %>">
-								<% } %>
+								   	<input class="form-control" placeholder="<%= desc.Field %>" type="text" name="<%= desc.Field %>" value="<%= tableData[0][desc.Field] %>">
+								<% } %>								
 							</div>
 						<% }) %>
 						<button type="submit" class="btn btn-primary">Save</button>
@@ -40,12 +39,8 @@
 				</div>
 			</div>
 	    </div>
-	    <div class="col-sm">
-	      
-	    </div>
+	    <div class="col-sm"> </div>
   	</div>
-
-	
 </div>
 </body>
 </html>
