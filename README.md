@@ -7,7 +7,7 @@ $ npm install npmadmin --save
 ```
 #####  write this into your server file  :
 ```javascript
-var npmadmin = require('./npmadmin/server');
+var npmadmin = require('npmadmin');
 var config = {
     host     : 'localhost',
     user     : 'root',
