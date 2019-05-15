@@ -1,1 +1,0 @@
-[{"Field":"id","Type":"int(11)","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"contract_address","Type":"varchar(255)","Null":"YES","Key":"UNI","Default":null,"Extra":""},{"Field":"createdAt","Type":"datetime","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"updatedAt","Type":"datetime","Null":"NO","Key":"","Default":null,"Extra":""}]

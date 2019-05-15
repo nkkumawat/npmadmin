@@ -7,18 +7,26 @@ $ npm install npmadmin --save
 ```
 #####  write this into your server file  :
 ```javascript
-var npmadmin = require('npmadmin');
+var npmadmin = require('./npmadmin/server');
 var config = {
     host     : 'localhost',
-    user     : 'username',
-    password : 'password',
-    database : 'databasename'
+    user     : 'root',
+    password : '1234',
+    database : 'dbname'
 };
-var port = XXXX;
-npmadmin.init(config);
-npmadmin.start(port);
+var port = 3000;
+npmadmin.init(config).then(res => {
+    npmadmin.createUser('narendra' , "kumawat").then(res =>{
+        npmadmin.start(port);
+    }).catch(err => {
+	console.log(err);
+    })
+}).catch(err =>{
+    console.log(err);
+});
+
 ```
 #####  open this url in browser :
 ```url
-http://localhost:port/dashboard
+http://localhost:port
 ```

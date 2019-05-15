@@ -13,7 +13,8 @@
 			  		<div class="card-body">
 			  			<ul class="list-group">
 			  				<% for(var i=0; i < tables.length; i++) { %>
-							    <li class="list-group-item"> <a href="/dashboard/show?table=<%=tables[i]%>"><%=tables[i]%></a></li>
+							    <li class="list-group-item"> 
+							    	<a style="text-decoration: none; color: black;" href="/dashboard/show?table=<%=tables[i]%>"><i class="fas fa-book"></i> &nbsp;&nbsp;<%=tables[i]%></a></li>
 							<% } %>
 			  			</ul>
 			  		</div>

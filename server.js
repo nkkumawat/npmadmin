@@ -8,9 +8,23 @@ const userRouter = require('./routes/user');
 const dashboardRouter = require('./routes/dashboard');
 
 module.exports = {
-
 	init : function (config) {
-		connection.init(connection.createConnection({}))
+		return new Promise((resolve, reject) => {
+			if(connection.init(connection.createConnection(config)) == "err"){
+				reject("err");
+			}else{
+				resolve("success");
+			}
+		})
+	},
+	createUser : function (username , password) {
+		return new Promise((resolve, reject) => {
+			if(connection.createUser(username,password) == 'err' ){
+				reject("err");
+			}else{
+				resolve("success");
+			}
+		})
 	},
 	start : function (port) {
 		const app = express()
@@ -26,8 +40,7 @@ module.exports = {
 		}));
 		app.use(cookieParser());
 		app.use('/', express.static(path.join(__dirname, 'public')));
-
-		app.use('/user', userRouter);
+		app.use('/', userRouter);
 		app.use('/dashboard', dashboardRouter);
 		app.listen(port, () => console.log(`App listening on port ${port}!`))
 	}

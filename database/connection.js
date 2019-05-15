@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var fs = require('fs');
 var connection;
+var bcrypt = require('bcrypt');
 module.exports = {
 	createConnection : function (config) {
 		connection =  mysql.createConnection(config);
@@ -10,38 +11,63 @@ module.exports = {
 	init : function (connection) {
 		connection.query('SHOW TABLES;', function (err, tableNames, fields) {
 		  	if(err){
-		   		return err;
+		  		console.log(err);
+		   		return "err";
 			}
 			if(tableNames) {
 				tablN = [];
+				console.log(tableNames);
 				tableNames.forEach((tableNames) => {
 					var tableName = tableNames[Object.keys(tableNames)[0]];
 					tablN.push(tableName);
+					console.log(tableName);
 					connection.query('DESC '+ tableName +';', function (err, tableDesc, fields) {
 					  	if(err){
-					   		throw err;
+					  		console.lof(err);
+					   		return  "err";
 						}else if(tableDesc) {
-							fs.writeFile('./database/'+tableName+'.json',JSON.stringify(tableDesc), function (err) {
+							fs.writeFile(__dirname + '/'+tableName+'.json',JSON.stringify(tableDesc), function (err) {
 								if(err){
-									return err;
+									console.log(err);
+									return "err";
 								}
-								console.log('Saved!');
+								// console.log('Saved!');
 							});
 						}
 					});					
 				})
 
-				fs.writeFile('./database/tables.json',JSON.stringify(tablN), function (err) {
+				fs.writeFile(__dirname + '/tables.json',JSON.stringify(tablN), function (err) {
 					if(err){
-						return err;
+						return "err";
+					}else{
+						return "success";
 					}
-					// console.log(tablN);
 				});
 			}
 		});
 	},
 	getConnection : function() {
 		return connection;
+	},
+	createUser : function (username , password) {
+		bcrypt.hash(password, 2, function(err, hash) {
+			if(err){
+			  	return "err";
+			}else {
+				var user = {
+					username : username,
+					password : hash
+				}
+				fs.writeFile(__dirname + '/usernpmadmin.json',JSON.stringify(user), function (err) {
+					if(err){
+						return "err";
+					}else{
+						return "success";
+					}
+				});
+			}
+		});
 	}
 }
 
