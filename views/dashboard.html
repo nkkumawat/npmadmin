@@ -11,10 +11,12 @@
 			<div class="col-sm-6">
 				<div class="card">
 			  		<div class="card-body">
+			  			<h3>All Tables </h3><br>
 			  			<ul class="list-group">
 			  				<% for(var i=0; i < tables.length; i++) { %>
 							    <li class="list-group-item"> 
-							    	<a style="text-decoration: none; color: black;" href="/dashboard/show?table=<%=tables[i]%>"><i class="fas fa-book"></i> &nbsp;&nbsp;<%=tables[i]%></a></li>
+							    <a style="text-decoration: none; color: black;" href="/dashboard/show?table=<%=tables[i]%>">
+							    <i class="fas fa-book"></i> &nbsp;&nbsp;<%=tables[i]%><i class="fas fa-arrow-circle-right float-right"></i></a></li>
 							<% } %>
 			  			</ul>
 			  		</div>

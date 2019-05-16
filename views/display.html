@@ -14,7 +14,7 @@
 	      	<div class="card">
 			  	<div class="card-body">
 			  		<h3> <%= tableName%></h3>
-					<form action="/dashboard/insert?table=<%= tableName%>" method="post">
+					<form action="/dashboard/update?table=<%= tableName%>&primary=<%= primary %>" method="post">
 						<% tableDesc.forEach(function(desc){ %>
 							<div class="form-group">
 						    	<label for="<%= desc.Field %>"><%= desc.Field %> (<%= desc.Type %>)<%if (desc.Null  ==  'NO') { %>

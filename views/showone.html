@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ./head %>
+</head>
+<body>
+	<% include ./nav %>
+<div class="container">
+	<br>
+ 	<div class="row">
+	    <div class="col-sm"></div>
+	    <div class="col-sm-6">
+	      	<div class="card">
+			  	<div class="card-body">
+			  		<h3> <%= tableName%></h3>
+					<% tableDesc.forEach(function(desc){ %>
+				    	<b><%= desc.Field %> (<%= desc.Type %>)
+			    		<%if (desc.Null  ==  'NO') { %>
+							<span style="color:red;">*</span>
+						<% } %> : </b>				    
+					   	<%= tableData[0][desc.Field] %></p>
+					<% }) %>
+					<%if (err) { %>
+						<div class="alert alert-danger" role="alert">
+					 		<%= err %>
+						</div>
+					<% } %>
+				</div>
+			</div>
+	    </div>
+	    <div class="col-sm"> </div>
+  	</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

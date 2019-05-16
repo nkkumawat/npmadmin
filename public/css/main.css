@@ -1,9 +1,9 @@
 body{
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 table {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 table, tbody, tr, td, th {

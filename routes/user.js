@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
-var user = require('../database/usernpmadmin.json');
+
 var config = require('../config/config');
 var verifyService = require('../services/verifyService'); 
 const verifyToken = require('../middlewares/verifyToken');
 router.use(verifyToken.verifyTokenLogin);
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.decoded) {
 		res.redirect('/dashboard');
@@ -23,6 +22,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
+	var user = require('../database/usernpmadmin.json');
 	var params = req.body;
 	if(user.username == params.username){
 		bcrypt.compare(params.password, user.password, function(err, resp) {
@@ -40,7 +40,6 @@ router.post('/login', function(req, res, next) {
 	}else {
 		res.redirect("/?err=Username Not Found");
 	}
-
 });
 router.get('/logout', function(req, res, next) {
 	res.clearCookie('jwtToken');

@@ -16,14 +16,11 @@ module.exports = {
 			}
 			if(tableNames) {
 				tablN = [];
-				console.log(tableNames);
 				tableNames.forEach((tableNames) => {
 					var tableName = tableNames[Object.keys(tableNames)[0]];
 					tablN.push(tableName);
-					console.log(tableName);
 					connection.query('DESC '+ tableName +';', function (err, tableDesc, fields) {
 					  	if(err){
-					  		console.lof(err);
 					   		return  "err";
 						}else if(tableDesc) {
 							fs.writeFile(__dirname + '/'+tableName+'.json',JSON.stringify(tableDesc), function (err) {
@@ -36,7 +33,6 @@ module.exports = {
 						}
 					});					
 				})
-
 				fs.writeFile(__dirname + '/tables.json',JSON.stringify(tablN), function (err) {
 					if(err){
 						return "err";
@@ -68,6 +64,7 @@ module.exports = {
 				});
 			}
 		});
+		console.log("User Created");
 	}
 }
 

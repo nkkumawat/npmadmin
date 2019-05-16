@@ -3,25 +3,24 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const connection = require('./database/connection');
-
 const userRouter = require('./routes/user');
 const dashboardRouter = require('./routes/dashboard');
 
 module.exports = {
 	init : function (config) {
 		return new Promise((resolve, reject) => {
-			if(connection.init(connection.createConnection(config)) == "err"){
+			if(connection.init(connection.createConnection(config)) == "err") {
 				reject("err");
-			}else{
+			} else {
 				resolve("success");
 			}
 		})
 	},
 	createUser : function (username , password) {
 		return new Promise((resolve, reject) => {
-			if(connection.createUser(username,password) == 'err' ){
+			if(connection.createUser(username,password) == 'err' ) {
 				reject("err");
-			}else{
+			} else {
 				resolve("success");
 			}
 		})

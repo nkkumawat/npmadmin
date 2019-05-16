@@ -1,5 +1,5 @@
 # npmadmin
-
+Admin panel for your MySql databse.
 ### how to start
 #####  open terminal and  :
 ```
@@ -30,3 +30,6 @@ npmadmin.init(config).then(res => {
 ```url
 http://localhost:port
 ```
+
+#### Contribute
+email me on nk0kumawat@gmail.com
